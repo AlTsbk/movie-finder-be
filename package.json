@@ -1,0 +1,31 @@
+{
+  "name": "movie-finder-be",
+  "version": "1.0.0",
+  "description": "Back-end part of application for finding movie",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlTsbk/movie-finder-be.git"
+  },
+  "author": "Alexey Tsyabuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlTsbk/movie-finder-be/issues"
+  },
+  "homepage": "https://github.com/AlTsbk/movie-finder-be#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.2",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

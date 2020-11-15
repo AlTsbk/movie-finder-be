@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "dbConnectionString": "mongodb+srv://alts:lolikalolika228@cluster0.utaa7.mongodb.net/MOVIEFINDER?retryWrites=true&w=majority",
+    "jwtSecret": "spulaemulae"
+}
