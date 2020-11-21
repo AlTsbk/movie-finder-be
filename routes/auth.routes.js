@@ -4,6 +4,7 @@ const {
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const mail = require("../components/mail");
 const {
     check,
     validationResult
@@ -47,7 +48,6 @@ router.post("/register",
                 email
             });
 
-
             if (candidate) {
                 return res.status(400).json({
                     message: 'user with this email has already been created'
@@ -63,6 +63,8 @@ router.post("/register",
             });
 
             await user.save();
+
+            mail.sendConfirmMail(user.email, `http://localhost:5000/api/auth/confirm/${user._id}/`);
 
             res.status(201).json({
                 message: "User has been created"
@@ -117,16 +119,24 @@ router.post("/login",
                     message: "Wrong password"
                 });
             }
+            
+            if(!user.isActive){
+                return res.status(400).json({
+                    message: "This email address is not verified"
+                });
+            }
 
             const token = jwt.sign({
-                userId: user.id
-            }, 
-            config.get("jwtSecret"),
-            {
-                expiresIn: "1h"
-            });
+                    userId: user.id
+                },
+                config.get("jwtSecret"), {
+                    expiresIn: "1h"
+                });
 
-            res.json({ token, userId: user.id });
+            res.json({
+                token,
+                userId: user.id
+            });
 
         } catch (error) {
             res.status(500).json({
@@ -134,5 +144,18 @@ router.post("/login",
             });
         }
     });
+
+
+router.get("/confirm/:userId", async (req, res) => {
+    const user = await User.findOne({
+        _id: req.params.userId
+    });
+
+    user.isActive = true;
+
+    await user.save();
+
+    res.redirect("http://localhost:3000/login")
+});
 
 module.exports = router;

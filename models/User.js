@@ -17,6 +17,10 @@ const userSchema = new Schema({
     surname: {
         type: String,
         required: true,
+    },
+    isActive: {
+        type: Boolean,
+        default: false 
     }
 });
 

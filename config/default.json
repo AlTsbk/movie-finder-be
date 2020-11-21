@@ -1,5 +1,7 @@
 {
     "port": 5000,
-    "dbConnectionString": "mongodb+srv://alts:lolikalolika228@cluster0.utaa7.mongodb.net/MOVIEFINDER?retryWrites=true&w=majority",
-    "jwtSecret": "spulaemulae"
+    "dbConnectionString": "mongodb+srv://alts:MovieFinder228@cluster0.mkn9p.mongodb.net/MOVIEFINDER?retryWrites=true&w=majority",
+    "jwtSecret": "spulaemulae",
+    "mailBotEmail": "movie.finder.bot@gmail.com",
+    "mailBotPassword": "MovieFinder228"
 }
