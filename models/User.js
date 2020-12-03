@@ -18,9 +18,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    isActive: {
-        type: Boolean,
-        default: false 
+    status: {
+        type: String,
+        default: "notConfirmed" 
+    },
+    role: {
+        type: String,
+        default: "User"
     }
 });
 

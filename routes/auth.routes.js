@@ -1,14 +1,9 @@
-const {
-    Router
-} = require("express");
+const {Router} = require("express");
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const mail = require("../components/mail");
-const {
-    check,
-    validationResult
-} = require("express-validator");
+const {check, validationResult} = require("express-validator");
 const router = Router();
 const User = require("../models/User");
 
@@ -120,9 +115,15 @@ router.post("/login",
                 });
             }
             
-            if(!user.isActive){
+            if(user.status === "notConfirmed"){
                 return res.status(400).json({
                     message: "This email address is not verified"
+                });
+            }
+
+            if(user.status === "baned"){
+                return res.status(400).json({
+                    message: "This email address has been baned"
                 });
             }
 
@@ -151,7 +152,7 @@ router.get("/confirm/:userId", async (req, res) => {
         _id: req.params.userId
     });
 
-    user.isActive = true;
+    user.status = "active";
 
     await user.save();
 
