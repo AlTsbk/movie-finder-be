@@ -6,7 +6,7 @@ const User = require("../models/User");
 
 router.get("/", async (req, res) => {
     try {
-        var users = await User.find({});
+        let users = await User.find({});
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json({
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:userId", async (req, res) => {
     try {
-        var user = await User.findById(req.params.userId);
+        let user = await User.findById(req.params.userId);
         res.status(200).json(user);
     } catch (error) {
         res.status(500).json({

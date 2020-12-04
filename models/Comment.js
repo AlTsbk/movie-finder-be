@@ -1,31 +1,30 @@
 const {Schema, model} = require("mongoose");
 
-const userSchema = new Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    name: {
+const commentSchema = new Schema({
+    movieId: {
         type: String,
         required: true,
     },
-    surname: {
+    userId: {
         type: String,
         required: true,
     },
-    status: {
+    userName: {
         type: String,
-        default: "notConfirmed" 
+        required: true,
     },
-    role: {
+    text: {
         type: String,
-        default: "User"
+        required: true,
+    },
+    date: {
+        type: String,
+        required: true,
+    },
+    time: {
+        type: String,
+        required: true,
     }
 });
 
-module.exports = model("User", userSchema);
+module.exports = model("Comment", commentSchema);
