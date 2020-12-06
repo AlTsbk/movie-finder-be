@@ -25,6 +25,14 @@ const userSchema = new Schema({
     role: {
         type: String,
         default: "User"
+    },
+    likedMovies: {
+        type: Array,
+        default: []
+    },
+    dislikedMovies: {
+        type: Array,
+        default: []
     }
 });
 

@@ -1,16 +1,10 @@
-const {
-    Router
-} = require("express");
+const { Router } = require("express");
 const router = Router();
 const Comment = require("../models/Comment");
 const User = require("../models/User");
-const {
-    check,
-    validationResult
-} = require("express-validator");
+const { check, validationResult } = require("express-validator");
 
 router.get("/:movieId", async (req, res) => {
-
         try {
             let comments = await Comment.find({
                 movieId: req.params.movieId
