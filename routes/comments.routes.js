@@ -63,7 +63,7 @@ router.post("/",
         await comment.save();
 
         res.status(201).json({
-            message: "Comment has been added"
+            message: "Review has been added"
         });
     } catch (error) {
         res.status(500).json({

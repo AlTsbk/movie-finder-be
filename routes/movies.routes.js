@@ -22,13 +22,13 @@ router.put("/rate", async (req, res)=>{
 
         const user = await User.findById(userId);
         const movie = await Movie.findOne({movieId}) || new Movie({movieId});
-        
+
         if(note){
             movie.positiveNotes.push(userId);
             user.likedMovies.push(movieId);
         }else{
             movie.negativeNotes.push(userId);
-            user.dislikedMovies.push(dislikedMovies);
+            user.dislikedMovies.push(movieId);
         }
 
         movie.save();
