@@ -1,0 +1,4 @@
+applications:
+- name: MovieFinderBE
+  memory: 1024m
+  instances: 1
