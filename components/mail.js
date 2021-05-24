@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendConfirmMail = async (userMail, link) => { 
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA",config.get("mailBotEmail"), config.get("mailBotPassword"));
     await transporter.sendMail({
         from: "'MovieFinderbot'",
         to: userMail,
