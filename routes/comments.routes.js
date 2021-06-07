@@ -36,7 +36,7 @@ router.post("/",
         if (!errors.isEmpty()) {
             return res.status(400).json({
                 errors: errors.array(),
-                message: "data is not valid"
+                message: "Пустая рецензия"
             });
         }
 
@@ -63,7 +63,7 @@ router.post("/",
         await comment.save();
 
         res.status(201).json({
-            message: "Review has been added"
+            message: "Рецензия была дабовленно"
         });
     } catch (error) {
         res.status(500).json({

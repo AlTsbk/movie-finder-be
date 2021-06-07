@@ -31,7 +31,7 @@ router.delete("/:userId", async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.userId);
         res.status(200).json({
-            message: "User has been deleted"
+            message: "Пользователь удален"
         });
     } catch (error) {
         res.status(500).json({
@@ -47,7 +47,7 @@ router.put("/changeRole", async (req, res) => {
             role: req.body.role
         });
         res.status(200).json({
-            message: "Role has been changed"
+            message: "Роль изменена"
         });
     } catch (error) {
         res.status(500).json({
@@ -64,11 +64,11 @@ router.put("/ban", async (req, res) => {
 
         if(req.body.status === "banned"){
             res.status(200).json({
-                message: "User has been banned"
+                message: "Пользователь заблокирован"
             });
         }else{
             res.status(200).json({
-                message: "User has been unbanned"
+                message: "Пользователь разблокирован"
             });
         }
         

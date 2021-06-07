@@ -35,7 +35,7 @@ router.put("/rate", async (req, res)=>{
         user.save();
 
         res.status(200).json({
-            message: "movie was rated" 
+            message: "Фильм оценен" 
         });
         
     } catch (error) {

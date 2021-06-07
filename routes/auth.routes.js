@@ -9,14 +9,14 @@ const User = require("../models/User");
 
 router.post("/register",
     [
-        check("email", "Email is incorrect").isEmail(),
-        check("password", "password is incorrect").isLength({
+        check("email", "Не корректный Email").isEmail(),
+        check("password", "Не корректный пароль").isLength({
             min: 6
         }),
-        check("name", "name is incorrect").isLength({
+        check("name", "Не корректное имя").isLength({
             min: 1
         }),
-        check("surname", "surname is incorrect").isLength({
+        check("surname", "Не корректная фамилия").isLength({
             min: 1
         })
     ],
@@ -28,7 +28,7 @@ router.post("/register",
             if (!errors.isEmpty()) {
                 return res.status(400).json({
                     errors: errors.array(),
-                    message: "data is not valid"
+                    message: "Данные не валидны"
                 });
             }
 
@@ -45,7 +45,7 @@ router.post("/register",
 
             if (candidate) {
                 return res.status(400).json({
-                    message: 'user with this email has already been created'
+                    message: 'Пользователь с таким email уже существует'
                 })
             }
 
@@ -62,7 +62,7 @@ router.post("/register",
             mail.sendConfirmMail(user.email, `http://localhost:5000/api/auth/confirm/${user._id}/`);
 
             res.status(201).json({
-                message: "User has been created"
+                message: "Пользователь был успешно создан"
             });
 
         } catch (error) {
@@ -75,8 +75,8 @@ router.post("/register",
 
 router.post("/login",
     [
-        check("email", "Email is incorrect").isEmail(),
-        check("password", "password is incorrect").isLength({
+        check("email", "Не корректный Email").isEmail(),
+        check("password", "Не корректный пароль").isLength({
             min: 6
         })
     ],
@@ -88,7 +88,7 @@ router.post("/login",
             if (!errors.isEmpty()) {
                 return res.status(400).json({
                     errors: errors.array(),
-                    message: "data is not valid"
+                    message: "данные не валидны"
                 });
             }
 
@@ -103,7 +103,7 @@ router.post("/login",
 
             if (!user) {
                 return res.status(400).json({
-                    message: "User with this email does not exist"
+                    message: "Пользователь с такой почтой не существует"
                 });
             }
 
@@ -111,19 +111,19 @@ router.post("/login",
 
             if (!isMatch) {
                 return res.status(400).json({
-                    message: "Wrong password"
+                    message: "Не верный пароль"
                 });
             }
             
             if(user.status === "notConfirmed"){
                 return res.status(400).json({
-                    message: "This email address is not verified"
+                    message: "Эта почта не подтверждена"
                 });
             }
 
             if(user.status === "baned"){
                 return res.status(400).json({
-                    message: "This email address has been baned"
+                    message: "Этот пользователь заблокирован"
                 });
             }
 
